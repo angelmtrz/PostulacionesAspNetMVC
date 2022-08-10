@@ -1,0 +1,72 @@
+﻿@model VSWEBTA01.Web.Models.PostulanteAddEditViewModel
+
+@{
+    ViewBag.Title = "Postulantes";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+    <h1 class="h3">Postulantes</h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i>Inicio </a></li>
+        <li><a href="@Url.Action("Index", "Postulante")"><i class="bi bi-tag"></i>Postulantes </a></li>
+        <li class="active"><i class="bi bi-pencil-square"></i>Administrar Postulantes</li>
+    </ol>
+</div>
+@if (TempData["MensajePostulante"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MensajePostulante"]
+    </div>
+}
+<div class="container col-xxl-8 px-4 py-2">
+    <div class="card text-bg-light  mb-3">
+        <div class="card-header h4">
+            Administrar Postulantes
+        </div>
+        <div class="card-body">
+            @Html.ValidationSummary()
+            @using (Html.BeginForm("AddEdit", "Postulante"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(e => e.postulanteId)
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre completo</label>
+                            @Html.TextBoxFor(e => e.nombreCompleto, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label">DNI</label>
+                            @Html.TextBoxFor(e => e.dni, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label">Telefono</label>
+                            @Html.TextBoxFor(e => e.telefono, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de Postulación: </label>
+                            @Html.TextBoxFor(e => e.fechaPostulacion, new { @type = "date", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Especialidad</label>
+                            @Html.DropDownListFor(e => e.especialidad, new SelectList(Model.ListEspecialidades, "especialidadId", "descripcion"), "[-Seleccione-]", new { @class = "form-select" })
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-save"></i> Guardar</button>
+                <a href="@Url.Action("Index", "Postulante")" class="btn btn-danger btn-sm"><i class="bi bi-x-octagon"></i> Cancelar</a>
+            }
+        </div>
+    </div>
+</div>
+

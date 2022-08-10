@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSWEBTA01.Web", "VSWEBTA01.Web\VSWEBTA01.Web.csproj", "{A2C3EC13-8E1C-4579-BFBA-8DD258BFE734}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSWEBTA01.Modelos", "VSWEBTA01.Modelos\VSWEBTA01.Modelos.csproj", "{318DE3CA-785A-4798-ABB7-516259F24CBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C3EC13-8E1C-4579-BFBA-8DD258BFE734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C3EC13-8E1C-4579-BFBA-8DD258BFE734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C3EC13-8E1C-4579-BFBA-8DD258BFE734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C3EC13-8E1C-4579-BFBA-8DD258BFE734}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318DE3CA-785A-4798-ABB7-516259F24CBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318DE3CA-785A-4798-ABB7-516259F24CBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318DE3CA-785A-4798-ABB7-516259F24CBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318DE3CA-785A-4798-ABB7-516259F24CBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E96F4D9A-824F-4D3A-ADF8-E679E711A03D}
+	EndGlobalSection
+EndGlobal

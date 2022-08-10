@@ -1,0 +1,48 @@
+﻿@model VSWEBTA01.Web.Models.EspecialidadAddEditViewModel
+
+@{
+    ViewBag.Title = "Especialidades";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+    <h1 class="h3">Especialidades</h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i>Inicio </a></li>
+        <li><a href="@Url.Action("Index", "Especialidad")"><i class="bi bi-tag"></i>Especialidades </a></li>
+        <li class="active"><i class="bi bi-pencil-square"></i>Administrar Especialidades</li>
+    </ol>
+</div>
+@if (TempData["MensajeEspecialidad"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MensajeEspecialidad"]
+    </div>
+}
+<div class="container col-xxl-8 px-4 py-2">
+    <div class="card text-bg-light  mb-3">
+        <div class="card-header h4">
+            Administrar Especialidades
+        </div>
+        <div class="card-body">
+            @Html.ValidationSummary()
+            @using (Html.BeginForm("AddEdit", "Especialidad"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(e => e.especialidadId)
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    @Html.TextBoxFor(e => e.nombre, new { @class = "form-control" })
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    @Html.TextAreaFor(e => e.descripcion, new { @class = "form-control" })
+                </div>
+
+                <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-save"></i> Guardar</button>
+                <a href="@Url.Action("Index", "Especialidad")" class="btn btn-danger btn-sm"><i class="bi bi-x-octagon"></i> Cancelar</a>
+            }
+        </div>
+    </div>
+</div>
+

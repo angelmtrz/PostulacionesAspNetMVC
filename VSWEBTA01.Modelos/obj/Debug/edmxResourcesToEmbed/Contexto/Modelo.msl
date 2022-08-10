@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="VSWEBTA1Entities">
+    <EntitySetMapping Name="especialidad">
+      <EntityTypeMapping TypeName="Model.especialidad">
+        <MappingFragment StoreEntitySet="especialidad">
+          <ScalarProperty Name="especialidadId" ColumnName="especialidadId" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="postulante">
+      <EntityTypeMapping TypeName="Model.postulante">
+        <MappingFragment StoreEntitySet="postulante">
+          <ScalarProperty Name="postulanteId" ColumnName="postulanteId" />
+          <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+          <ScalarProperty Name="dni" ColumnName="dni" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="fechaPostulacion" ColumnName="fechaPostulacion" />
+          <ScalarProperty Name="especialidadId" ColumnName="especialidadId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rol">
+      <EntityTypeMapping TypeName="Model.rol">
+        <MappingFragment StoreEntitySet="rol">
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="Model.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+          <ScalarProperty Name="rolId" ColumnName="rolId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

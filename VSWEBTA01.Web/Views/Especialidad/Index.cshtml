@@ -1,0 +1,70 @@
+﻿
+@model VSWEBTA01.Web.Models.EspecialidadIndexViewModel
+@using VSWEBTA01.Web.Helpers
+@using VSWEBTA01.Modelos.Helpers
+
+@{
+    ViewBag.Title = "Especialidades";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+    <h1 class="h3">Especialidades</h1>
+    <ol class="breadcrumb">
+        <li><i class="bi bi-house"></i> <a href="@Url.Action("Index", "Home")"> Inicio</a></li>
+        <li class="active"><i class="bi bi-tag"></i></li> Especialidades
+    </ol>
+</div>
+@if (TempData["MensajeEspecialidad"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MensajeEspecialidad"]
+    </div>
+}
+<div class="container col-xxl-8 px-4 py-2">
+    <div class="card text-bg-light  mb-3">
+        <div class="card-header h4">
+            Listado de Especialidades
+            @if (Session.GetRol() == ConstantHelpers.Rol.Administrador)
+            {
+                <a href="@Url.Action("AddEdit", "Especialidad")" class="btn btn-outline-primary btn-sm float-end"><i class="bi bi-plus-lg"></i> Nueva Especialidad</a>
+            }
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 1; }
+                        @foreach (var item in Model.ListaEspecialidades)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.nombre</td>
+                                <td>@item.descripcion</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm float-end" role="group">
+                                        @if (Session.GetRol() == ConstantHelpers.Rol.Administrador)
+                                        {
+                                            <a href="@Url.Action("AddEdit", "Especialidad", new {especialidadId = item.especialidadId})" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i> Modificar</a>
+                                            <a href="@Url.Action("Delete", "Especialidad", new {especialidadId = item.especialidadId})" onclick="return confirm('¿Eliminar el registro?')" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

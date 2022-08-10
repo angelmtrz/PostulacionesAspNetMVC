@@ -1,0 +1,54 @@
+﻿@model VSWEBTA01.Web.Models.PostulanteDetailViewModel
+
+@{
+    ViewBag.Title = "Postulantes";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+    <h1 class="h3">Postulantes</h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Home")"><i class="bi bi-house"></i>Inicio </a></li>
+        <li><a href="@Url.Action("Index", "Postulante")"><i class="bi bi-tag"></i>Postulantes </a></li>
+        <li class="active"><i class="bi bi-pencil-square"></i>Detalle de Postulante</li>
+    </ol>
+</div>
+@if (TempData["MensajePostulante"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MensajePostulante"]
+    </div>
+}
+<div class="container col-xxl-8 px-4 py-2">
+    <div class="card text-bg-light  mb-3">
+        <div class="card-header h4">
+            Detalle de Postulante
+            <a href="@Url.Action("Index", "Postulante")" class="btn btn-outline-success btn-sm float-end"><i class="bi bi-chevron-double-left"></i> Volver</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre completo</th>
+                            <th scope="col">DNI</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Fecha de Postulación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Model.postulanteDetail.nombreCompleto</td>
+                            <td>@Model.postulanteDetail.dni</td>
+                            <td>@Model.postulanteDetail.telefono</td>
+                            <td>@Model.postulanteDetail.especialidad1.descripcion</td>
+                            <td>@Model.postulanteDetail.fechaPostulacion.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

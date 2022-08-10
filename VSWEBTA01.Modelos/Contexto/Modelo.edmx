@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="especialidad">
+          <Key>
+            <PropertyRef Name="especialidadId" />
+          </Key>
+          <Property Name="especialidadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="postulante">
+          <Key>
+            <PropertyRef Name="postulanteId" />
+          </Key>
+          <Property Name="postulanteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreCompleto" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="fechaPostulacion" Type="datetime" Nullable="false" />
+          <Property Name="especialidadId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="rolId" />
+          </Key>
+          <Property Name="rolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioId" />
+          </Key>
+          <Property Name="usuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bloqueado" Type="bit" Nullable="false" />
+          <Property Name="rolId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_postulante_especialidad">
+          <End Role="especialidad" Type="Self.especialidad" Multiplicity="1" />
+          <End Role="postulante" Type="Self.postulante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="especialidad">
+              <PropertyRef Name="especialidadId" />
+            </Principal>
+            <Dependent Role="postulante">
+              <PropertyRef Name="especialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="rolId" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="especialidad" EntityType="Self.especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postulante" EntityType="Self.postulante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rol" EntityType="Self.rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_postulante_especialidad" Association="Self.FK_postulante_especialidad">
+            <End Role="especialidad" EntitySet="especialidad" />
+            <End Role="postulante" EntitySet="postulante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_rol" Association="Self.FK_usuario_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="especialidad">
+          <Key>
+            <PropertyRef Name="especialidadId" />
+          </Key>
+          <Property Name="especialidadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="postulante" Relationship="Self.FK_postulante_especialidad" FromRole="especialidad" ToRole="postulante" />
+        </EntityType>
+        <EntityType Name="postulante">
+          <Key>
+            <PropertyRef Name="postulanteId" />
+          </Key>
+          <Property Name="postulanteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreCompleto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaPostulacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="especialidadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="especialidad1" Relationship="Self.FK_postulante_especialidad" FromRole="postulante" ToRole="especialidad" />
+        </EntityType>
+        <EntityType Name="rol">
+          <Key>
+            <PropertyRef Name="rolId" />
+          </Key>
+          <Property Name="rolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_rol" FromRole="rol" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="usuarioId" />
+          </Key>
+          <Property Name="usuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bloqueado" Type="Boolean" Nullable="false" />
+          <Property Name="rolId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="rol" Relationship="Self.FK_usuario_rol" FromRole="usuario" ToRole="rol" />
+        </EntityType>
+        <Association Name="FK_postulante_especialidad">
+          <End Role="especialidad" Type="Self.especialidad" Multiplicity="1" />
+          <End Role="postulante" Type="Self.postulante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="especialidad">
+              <PropertyRef Name="especialidadId" />
+            </Principal>
+            <Dependent Role="postulante">
+              <PropertyRef Name="especialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_rol">
+          <End Role="rol" Type="Self.rol" Multiplicity="1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rol">
+              <PropertyRef Name="rolId" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="rolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VSWEBTA1Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="especialidad" EntityType="Self.especialidad" />
+          <EntitySet Name="postulante" EntityType="Self.postulante" />
+          <EntitySet Name="rol" EntityType="Self.rol" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="FK_postulante_especialidad" Association="Self.FK_postulante_especialidad">
+            <End Role="especialidad" EntitySet="especialidad" />
+            <End Role="postulante" EntitySet="postulante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_rol" Association="Self.FK_usuario_rol">
+            <End Role="rol" EntitySet="rol" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="VSWEBTA1Entities">
+          <EntitySetMapping Name="especialidad">
+            <EntityTypeMapping TypeName="Model.especialidad">
+              <MappingFragment StoreEntitySet="especialidad">
+                <ScalarProperty Name="especialidadId" ColumnName="especialidadId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postulante">
+            <EntityTypeMapping TypeName="Model.postulante">
+              <MappingFragment StoreEntitySet="postulante">
+                <ScalarProperty Name="postulanteId" ColumnName="postulanteId" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fechaPostulacion" ColumnName="fechaPostulacion" />
+                <ScalarProperty Name="especialidadId" ColumnName="especialidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rol">
+            <EntityTypeMapping TypeName="Model.rol">
+              <MappingFragment StoreEntitySet="rol">
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="Model.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="bloqueado" ColumnName="bloqueado" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

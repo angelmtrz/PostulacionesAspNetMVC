@@ -1,0 +1,62 @@
+﻿@model VSWEBTA01.Web.Models.UsuarioIndexViewModel
+@using VSWEBTA01.Web.Helpers
+@using VSWEBTA01.Modelos.Helpers
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-2 mb-2 border-bottom">
+    <h1 class="h3">Postulantes</h1>
+    <ol class="breadcrumb">
+        <li><i class="bi bi-house"></i> <a href="@Url.Action("Index", "Home")"> Inicio</a></li>
+        <li class="active"><i class="bi bi-person"></i></li> Usuarios
+    </ol>
+</div>
+@if (TempData["MensajeUsuarios"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["MensajeUsuarios"]
+    </div>
+}
+<div class="container col-xxl-8 px-4 py-2">
+    <div class="card text-bg-light  mb-3">
+        <div class="card-header h4">
+            Listado de Usuarios
+            <a href="#" class="btn btn-outline-primary btn-sm float-end"><i class="bi bi-plus-lg"></i> Nuevo Usuario</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int i = 1; }
+                        @foreach (var item in Model.ListaUsuarios)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.codigo</td>
+                                <td>@item.email</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm float-end" role="group">
+                                        <a href="#" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i> Modificar</a>
+                                        <a href="#" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
